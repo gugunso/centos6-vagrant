@@ -28,6 +28,18 @@ chkconfig httpd on
 sudo service iptables stop
 sudo chkconfig iptables off
 
+# ---------------
+# postgresql9.6
+# ---------------
+sudo yum -y localinstall https://yum.postgresql.org/9.6/redhat/rhel-6.7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+sudo yum -y install postgresql96-server
+sudo service postgresql-9.6 initdb
+sudo service postgresql-9.6 start
+sudo chkconfig postgresql-9.6 on
+cd /vagrant 
+sudo -u postgres createuser develop
+sudo -u postgres psql -c "ALTER ROLE develop WITH PASSWORD 'password';"
+sudo -u postgres createdb -T template0 -E utf8 eccube_dev 
 
 # ---------------
 # language 
@@ -51,8 +63,6 @@ sudo sed -i -e "s|;date.timezone =|date.timezone = Asia/Tokyo|" /etc/php.ini
 sudo sed -i -e "s|User apache|User vagrant|" /etc/httpd/conf/httpd.conf
 sudo sed -i -e "s|Group apache|Group vagrant|" /etc/httpd/conf/httpd.conf
 
-
-sudo service httpd start
 
 # ---------------
 # https://qiita.com/kurosawa_kuro/items/61676cb91e0e45b87705
