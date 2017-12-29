@@ -24,7 +24,6 @@ mysql -u root -e "create user 'develop'@'localhost' identified by 'password'"
 mysql -u root -e "grant all on eccube_dev.* to 'develop'@'localhost' identified by 'password'"
 
 chkconfig mysqld on 
-chkconfig httpd on 
 sudo service iptables stop
 sudo chkconfig iptables off
 

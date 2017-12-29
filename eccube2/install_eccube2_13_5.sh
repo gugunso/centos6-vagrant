@@ -23,5 +23,5 @@ rm eccube-2.13.5.tar.gz
 # ---------------
 sudo sed -i -e 's|DocumentRoot "/var/www/html"|DocumentRoot "/vagrant/eccube2_13_5/html"|' /etc/httpd/conf/httpd.conf
 echo "Set DocumentRoot to  /vagrant/eccube2_13_5/html "
+echo "Execute 'vagrant reload' to reflect the 'selinux = disabled' setting." 
 
- 
