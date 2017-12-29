@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# ECCUBE2 enviroment
+
 # ---------------
 # git
 # ---------------
@@ -23,7 +25,7 @@ mysql -u root -e 'CREATE DATABASE eccube_dev DEFAULT CHARACTER SET utf8'
 mysql -u root -e "create user 'develop'@'localhost' identified by 'password'"
 mysql -u root -e "grant all on eccube_dev.* to 'develop'@'localhost' identified by 'password'"
 
-chkconfig mysqld on 
+sudo chkconfig mysqld on 
 sudo service iptables stop
 sudo chkconfig iptables off
 
