@@ -16,6 +16,12 @@ Vagrant.configure(2) do |config|
   
   # ECCUBE3系環境セットアップ
   config.vm.provision :shell, :path => "install_eccube3_enviroment.sh"
+
+  # reload プラグインが入っていればreloadして設定変更反映
+  if Vagrant.has_plugin?("vagrant-reboot")
+    config.vm.provision :reload
+  end
+
   # ECCUBE3本体インストール（本体が不要な場合はコメントアウト）
   config.vm.provision :shell, :path => "install_eccube3_0_10.sh"
 

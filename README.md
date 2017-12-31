@@ -1,59 +1,63 @@
 # centos6-vagrant
-vagrantでcentos6を立ててサクッと開発環境構築するためのファイルです。  
-開発用なので、クソ適当です。絶対に本番運用しないでください。
+vagrantでcentos6を立ててサクッと開発環境構築するためのファイル群です。  
+開発用なので、色々適当です。
 
-## eccube2
-eccube2系用のミドルウェアをインストールし、2.13.5のソースコードをデプロイします。
 
-### usage
-ファイルを手元に落として、vagrant up すればOKです。
-必要な場合は、Vagrantfileにネットワークの設定など適宜行ってください。
-
+# usage
+チェックアウトし、立ち上げたい環境のディレクトリに移動してvagrant up する。
 
 ```
 git clone https://github.com/gugunso/centos6-vagrant
-cd centos6-vagrant/eccube2
+cd centos6-vagrant/eccube3
 vagrant up
 ```
 
-成功するとprovisionが走り、諸々インストールされ、設定が上書きなどされます。
+vagrant-reload プラグインが入っている場合、以上で終了。
 
-※provisionが終わった後、一度reloadして下さい。
-reloadしないと、
- selinux = disabled 
-の設定が反映されないため、synced_folderをapacheドキュメントルートに指定出来ません。
-
-
+vagrant-reload プラグインが入っていない場合は、vagrant reloadする。
 ```
 vagrant reload
 ```
 
-reload し終わったら、ブラウザからアクセスすればeccube2.13.5のインストール画面が表示されます。
+※必要であれば、各ディレクトリのVagrantfileを編集して、ネットワーク設定等を適宜行う。
 
+# info 
+## version
+ミドルのバージョンは、各シェルの中を参照。
 
-### install_eccube2_enviroment.sh
-ミドルウェアのインストール、DB作成などを行います。
+### ECCUBE2系
 - PHP 5.6
 - Mysql 5.6
 - Postgresql 9.6
 
+### ECCUBE3系
+- PHP 7.0
+- Mysql 5.6
+- Postgresql 9.6
+
+## Databese 
 Mysql、Postgresql共に、下記内容で作成します。
 - DB名：eccube_dev
 - DBユーザ名：develop
 - DBパスワード：password
 
-必要に応じ、適宜変更して下さい。
-
-### install_eccube2_13_5.sh
-ECCUBE2.13.5をダウンロードして展開、
-ドキュメントルートを書き換えます。
-
-※既存プロジェクトなど、2.13.5ソースコードが不要な場合、
-
-config.vm.provision :shell, :path => "install_eccube2_13_5.sh"
-をコメントアウトして下さい。
+## メモ
+ミドルウェアの設定、インストール  
+と  
+アプリケーション本体のインストールは
+別のシェルに書いてあるので、既存プロジェクトなどの場合は後者をコメントアウトすればよい。
 
 
-## eccube3
-eccube3系を動作させるのに必要な環境を作ります。
+# 参考
+
+VagrantのShell Provisionerはrootで実行される
+https://qiita.com/pasela/items/906291647c4f97b9a7c7
+
+EC-CUBE3のメモ - 開発環境 -
+https://qiita.com/chihiro-adachi/items/645fee870d50a985dc88
+https://github.com/chihiro-adachi/eccube3-vagrant
+
+※provisioning 後に自動でリロードしたければ、この辺を入れる
+https://github.com/exratione/vagrant-provision-reboot
+https://github.com/aidanns/vagrant-reload
 

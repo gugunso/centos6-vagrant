@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# ECCUBE3 enviroment
+# set up ECCUBE3 enviroment.
 
 # ---------------
-# git zip unzip etc...
+# git zip unzip 
 # ---------------
 sudo yum install git zip unzip -y
 
