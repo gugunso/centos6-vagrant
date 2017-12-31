@@ -24,7 +24,7 @@ fi
 # ---------------
 # ECCUBE 3.0.10 本体インストール
 # ---------------
-/usr/local/bin/composer create-project ec-cube/ec-cube ec-cube "3.0.10"
+sudo -u vagrant /usr/local/bin/composer create-project ec-cube/ec-cube ec-cube "3.0.10"
 
 # ---------------
 # Apache設定変更
